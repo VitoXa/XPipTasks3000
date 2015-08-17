@@ -52,7 +52,7 @@ public class SubTaskDialog extends Dialog{
         boolean isDone = false;
         if (_subTask.state == TaskState.DONE) isDone = true;
 
-        //((CheckBox)this.findViewById(R.id)).setChecked(isDone);
+        ((CheckBox)this.findViewById(R.id.subTaskDoneCheckBox)).setChecked(isDone);
         Button bCancel = (Button)this.findViewById(R.id.SubTaskDialog_cancel);
         final Dialog _this = this;
         bCancel.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,10 @@ public class SubTaskDialog extends Dialog{
         // resave all attributes
         this._subTask.text = ((EditText)this.findViewById(R.id.SubTaskEditText))
                 .getText().toString();
+        if (((CheckBox)this.findViewById(R.id.subTaskDoneCheckBox)).isChecked()) {
+            this._subTask.state = TaskState.DONE;
+        }
+        else this._subTask.state = TaskState.IN_PROGRESS;
 
         //
 
